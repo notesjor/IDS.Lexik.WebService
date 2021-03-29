@@ -77,15 +77,19 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
 
     protected string WebServiceUrlBase { get; set; } = null;
 
+    protected string ProjectName { get; set; } = "OWIDplus";
+    protected string ProjectUrl { get; set; } = "https://www.owid.de/plus";
+    protected string ProjectVersion { get; set; } = "1.0.0";
+
     private OpenApiDocument AppendDefaultDocumentation(OpenApiDocument document)
     {
       document.Info = new OpenApiInfo
       {
         License = new OpenApiLicense { Name = "GNU Affero General Public License 3.0", Url = new Uri("https://www.gnu.org/licenses/agpl-3.0.de.html") },
-        Contact = new OpenApiContact { Name = "Forschungsgruppe CoSoDi (COmputergestützte SOzio- und DIskurslinguistik - an der Universität Siegen - Entwickler: Jan Oliver Rüdiger) - Projekt diskursmonitor.de", Url = new Uri("https://diskursmonitor.de/") },
+        Contact = new OpenApiContact { Name = "Leibniz-Institut für Deutsche Sprache - Entwickler: Jan Oliver Rüdiger", Url = new Uri(ProjectUrl) },
         TermsOfService = new Uri("https://www.gnu.org/licenses/agpl-3.0.de.html"),
-        Title = "diskursmonitor.de REST-WebService",
-        Version = "1.0.0"
+        Title = ProjectName,
+        Version = ProjectVersion
       };
 
       document.Servers = new List<OpenApiServer> {

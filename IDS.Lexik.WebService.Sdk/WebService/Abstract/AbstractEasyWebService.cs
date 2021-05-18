@@ -42,7 +42,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
       PerformTasks();
 
       if (WaitBehaviour == null)
-        WaitBehaviour = new WaitBehaviourWindows();
+        WaitBehaviour = new WaitBehaviourLinux();
 
       WaitBehaviour.Wait();
       _server.Dispose();

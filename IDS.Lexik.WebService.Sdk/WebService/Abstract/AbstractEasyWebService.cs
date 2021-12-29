@@ -66,7 +66,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
 
     private Server RunServer()
     {
-      _documentation = OpenApiHelper.ConvertToJson(AppendDefaultDocumentation(GetDocumentation()));
+      _documentation = AppendDefaultDocumentation(GetDocumentation()).ConvertToJson();
       return new Server(_ip, _port, OpenApiRoute);
     }
 

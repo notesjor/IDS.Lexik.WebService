@@ -70,10 +70,8 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
       return new Server(_ip, _port, OpenApiRoute);
     }
 
-    private Task OpenApiRoute(HttpContext req)
-    {
-      return req.Response.Send(_documentation);
-    }
+    private void OpenApiRoute(HttpContext req) 
+      => req.Response.Send(_documentation);
 
     protected string WebServiceUrlBase { get; set; } = null;
 

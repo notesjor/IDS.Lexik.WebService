@@ -35,7 +35,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
       Console.Write($"Run {GetType().Namespace} on {_ip}:{_port}...");
       LoadData();
       _server = RunServer();
-      _server.AddEndpoint(HttpVerb.GET, "/ping", (arg) => arg.Response.Send(HttpStatusCode.OK));
+      _server.AddEndpoint(System.Net.Http.HttpMethod.Get, "/ping", (arg) => arg.Response.Send(HttpStatusCode.OK));
       ConfigureEndpoints(_server);
       Console.WriteLine("ok!");
 

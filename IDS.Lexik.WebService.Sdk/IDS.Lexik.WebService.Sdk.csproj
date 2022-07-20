@@ -70,7 +70,7 @@
       <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
       <Name>BitCutStudios.CorpusExplorer</Name>
     </ProjectReference>
-    <ProjectReference Include="W:\Kooperationsprojekte\TfresWebserver\TefresWebserver\TFRES.csproj">
+    <ProjectReference Include="..\..\..\..\Projekte-Kooperation\TfresWebserver\TefresWebserver\TFRES.csproj">
       <Project>{63f6b9f6-ff80-4764-bd45-109d549bf459}</Project>
       <Name>TFRES</Name>
     </ProjectReference>

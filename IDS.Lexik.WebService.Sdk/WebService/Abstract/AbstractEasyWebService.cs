@@ -21,9 +21,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
     private Server _server;
     private string _documentation;
 
-    protected AbstractEasyWebService()
-    {
-    }
+    protected AbstractEasyWebService() { }
 
     /// <summary>
     /// Starten den WebService
@@ -31,21 +29,29 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
     /// <param name="WaitBehaviour">Gibt an, ob und wie der Service warten soll.</param>
     public void Start(AbstractWaitBehaviour WaitBehaviour = null)
     {
-      LoadAdditionalConfiguration(LoadConfiguration());
-      Console.Write($"Run {GetType().Namespace} on {_ip}:{_port}...");
-      LoadData();
-      _server = RunServer();
-      _server.AddEndpoint(System.Net.Http.HttpMethod.Get, "/ping", (arg) => arg.Response.Send(HttpStatusCode.OK));
-      ConfigureEndpoints(_server);
-      Console.WriteLine("ok!");
+      try
+      {
+        LoadAdditionalConfiguration(LoadConfiguration());
+        Console.Write($"Run {GetType().Namespace} on {_ip}:{_port}...");
+        LoadData();
+        _server = RunServer();
+        _server.AddEndpoint(System.Net.Http.HttpMethod.Get, "/ping", (arg) => arg.Response.Send(HttpStatusCode.OK));
+        ConfigureEndpoints(_server);
+        Console.WriteLine("ok!");
 
-      PerformTasks();
+        PerformTasks();
 
-      if (WaitBehaviour == null)
-        WaitBehaviour = new WaitBehaviourLinux();
+        if (WaitBehaviour == null)
+          WaitBehaviour = new WaitBehaviourLinux();
 
-      WaitBehaviour.Wait();
-      _server.Dispose();
+        WaitBehaviour.Wait();
+        _server.Dispose();
+      }
+      catch (Exception ex)
+      {
+        Console.WriteLine(ex.Message);
+        Console.WriteLine(ex.StackTrace);
+      }
     }
 
     /// <summary>
@@ -70,7 +76,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
       return new Server(_ip, _port, OpenApiRoute);
     }
 
-    private void OpenApiRoute(HttpContext req) 
+    private void OpenApiRoute(HttpContext req)
       => req.Response.Send(_documentation);
 
     protected string WebServiceUrlBase { get; set; } = null;
@@ -134,13 +140,17 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
           throw new Exception();
         }
 
-        var config = JsonConvert.DeserializeObject<T>(FileIO.ReadText(path));
+        var text = File.ReadAllText(path);
+        var config = JsonConvert.DeserializeObject<T>(text);
         _ip = config.Ip;
         _port = config.Port;
         return config;
       }
-      catch
+      catch (Exception ex)
       {
+        Console.WriteLine(ex.Message);
+        Console.WriteLine(ex.StackTrace);
+
         _ip = "127.0.0.1";
         _port = 1111;
         return default(T);

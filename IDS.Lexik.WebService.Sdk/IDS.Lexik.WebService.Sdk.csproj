@@ -40,8 +40,8 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.OpenApi, Version=1.6.5.0, Culture=neutral, PublicKeyToken=3f5743946376f042, processorArchitecture=MSIL">
-      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\Microsoft.OpenApi.1.6.5\lib\netstandard2.0\Microsoft.OpenApi.dll</HintPath>
+    <Reference Include="Microsoft.OpenApi, Version=1.6.23.0, Culture=neutral, PublicKeyToken=3f5743946376f042, processorArchitecture=MSIL">
+      <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\Microsoft.OpenApi.1.6.23\lib\netstandard2.0\Microsoft.OpenApi.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\CorpusExplorerV2\CorpusExplorer\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -64,7 +64,6 @@
     <Compile Include="WebService\Abstract\AbstractEasyWebService.cs" />
     <Compile Include="WebService\Configuration\EasyWebServiceConfiguration.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\..\CorpusExplorerV2\CorpusExplorer\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
       <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>

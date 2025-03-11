@@ -21,7 +21,12 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
     private Server _server;
     private string _documentation;
 
-    protected AbstractEasyWebService() { }
+    protected AbstractEasyWebService()
+    {
+      AppPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+    }
+
+    public string AppPath { get; set; }
 
     /// <summary>
     /// Starten den WebService
@@ -131,7 +136,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
     {
       try
       {
-        var path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "config.cnf");
+        var path = Path.Combine(AppPath, "config.cnf");
 
         if (!File.Exists(path))
         {

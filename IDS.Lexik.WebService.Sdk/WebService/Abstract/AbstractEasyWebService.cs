@@ -8,6 +8,7 @@ using Bcs.IO;
 using IDS.Lexik.WebService.Sdk.WaitBehaviour;
 using IDS.Lexik.WebService.Sdk.WaitBehaviour.Abstract;
 using IDS.Lexik.WebService.Sdk.WebService.Configuration;
+using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Tfres;
@@ -77,7 +78,7 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
 
     private Server RunServer()
     {
-      _documentation = AppendDefaultDocumentation(GetDocumentation()).ConvertToJson();
+      _documentation = OpenApiHelper.ConvertToJson(AppendDefaultDocumentation(GetDocumentation()));
       return new Server(_ip, _port, OpenApiRoute);
     }
 
@@ -122,7 +123,6 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
                               }
                             }
                           });
-
       return document;
     }
 

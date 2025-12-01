@@ -9,7 +9,6 @@ using IDS.Lexik.WebService.Sdk.WaitBehaviour;
 using IDS.Lexik.WebService.Sdk.WaitBehaviour.Abstract;
 using IDS.Lexik.WebService.Sdk.WebService.Configuration;
 using Microsoft.OpenApi;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Tfres;
 
@@ -109,10 +108,10 @@ namespace IDS.Lexik.WebService.Sdk.WebService.Abstract
       document.Paths?.Add("/ping",
                           new OpenApiPathItem
                           {
-                            Operations = new Dictionary<OperationType, OpenApiOperation>
+                            Operations = new Dictionary<HttpMethod, OpenApiOperation>
                             {
                               {
-                                OperationType.Get, new OpenApiOperation
+                                HttpMethod.Get, new OpenApiOperation
                                 {
                                   Description = "Liefert den Statuscode 200, wenn der WebServcie verfügbar ist.",
                                   Responses = new OpenApiResponses
